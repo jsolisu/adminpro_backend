@@ -1,8 +1,18 @@
 // requires
 const express = require('express');
+const mongoose = require('mongoose');
 
 // inicializar variables
 const app = express();
+
+// conexion a la base de datos
+mongoose.connect('mongodb://localhost/hospitalDB', {
+    useNewUrlParser: true
+}, (err, res) => {
+    if (err) throw err;
+
+    console.log('Base de datos: \x1b[32m%s\x1b[0m', 'online.');
+});
 
 // rutas
 app.get('/', (req, res, next) => {
