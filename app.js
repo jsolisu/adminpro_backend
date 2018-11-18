@@ -1,9 +1,16 @@
 // requires
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
 // inicializar variables
 const app = express();
+
+// body parser
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
+app.use(bodyParser.json());
 
 // importar rutas
 const appRoutes = require('./routes/app');
