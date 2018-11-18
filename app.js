@@ -5,6 +5,10 @@ const mongoose = require('mongoose');
 // inicializar variables
 const app = express();
 
+// importar rutas
+const appRoutes = require('./routes/app');
+const usuarioRoutes = require('./routes/usuario');
+
 // conexion a la base de datos
 mongoose.connect('mongodb://localhost/hospitalDB', {
     useNewUrlParser: true
@@ -15,12 +19,8 @@ mongoose.connect('mongodb://localhost/hospitalDB', {
 });
 
 // rutas
-app.get('/', (req, res, next) => {
-    res.status(200).json({
-        ok: true,
-        mensaje: 'Peticion realizada correctamente'
-    });
-});
+app.use('/usuario', usuarioRoutes);
+app.use('/', appRoutes);
 
 // escuchar peticiones
 app.listen(3000, () => {
